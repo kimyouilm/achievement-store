@@ -6,14 +6,23 @@ import com.lima.web.board.domain.Board;
 import com.lima.web.board.domain.BoardComments;
 import com.lima.web.member.domain.Member;
 import com.lima.web.member.service.MemberService;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.List;
+import java.io.File;
+import java.text.DateFormat;
+import java.text.FieldPosition;
+import java.text.ParsePosition;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 
 @Controller
 @RequestMapping("/board")
@@ -28,6 +37,21 @@ public class BoardController {
 
     @Resource
     MemberService memberService;
+
+    String uploadDir;
+
+    public BoardController(ServletContext sc) {
+        uploadDir = sc.getRealPath("/upload/board");
+    }
+
+    private String writeFile (MultipartFile file) throws Exception {
+        if (file.isEmpty())
+            return null;
+        String filename = UUID.randomUUID().toString() + ".jpg";
+        file.transferTo(new File(uploadDir + "/" + filename));
+        System.out.println("uploadDir@@@@@@@@@@@@@@@@@@@ = " + uploadDir);
+        return filename;
+    }
 
     @GetMapping("list")
     public void list(Model model) throws Exception {
@@ -64,9 +88,13 @@ public class BoardController {
         }
 
         Board board = boardService.get(boardNo);
+        DateFormat dateFormat = new SimpleDateFormat("yyy-MM-dd");
+        Date date = dateFormat.parse(board.getGoalDate());
+
         List<BoardComments> boardComments = boardCommentsService.list(boardNo, pageNo, pageSize);
         model.addAttribute("boardComments", boardComments);
         model.addAttribute("board", board);
+        model.addAttribute("goalDate", date);
 
         model.addAttribute("pageNo", pageNo);
         model.addAttribute("pageSize", pageSize);
@@ -78,34 +106,34 @@ public class BoardController {
 
     /**
      *
-     * @param httpServletRequest jsp에서 name이 goalHam인 값을 받음
      * @param board 보드의 값을 받아옴
      * @return add가 되면 index 주소로 리턴
      * @throws Exception
      */
     @PostMapping("add")
-    public String insert(HttpServletRequest httpServletRequest, Board board) throws Exception {
-        int ham = Integer.parseInt(httpServletRequest.getParameter("goalHam"));
-
-        memberService.hamUpdate(ham, board.getMemberNo());
+    public String insert(@ModelAttribute("loginUser") Member loginUser, Board board, MultipartFile file) throws Exception {
+        board.setMemberNo(loginUser.getMemberNo());
+        board.setGoalImg(writeFile(file));
         boardService.insert(board);
-        return "redirect:../index";
+        return "redirect:list";
     }
 
     /**
      * 해당 유저의 게시판 지우기
      * @param boardNo 보드 번호 받기
-     * @return 삭제가 완료 되면 index로 redirect
+     * @return 삭제가 완료 되면 mypage redirect
      * @throws Exception
      */
     @GetMapping("delete")
     public String delete(int boardNo) throws Exception {
         boardService.deleteByBoardNo(boardNo);
-        return "redirect:../index";
+        return "redirect:../member/mypage";
     }
 
     @PostMapping("update")
-    public String update(Board board) throws Exception {
+    public String update(@ModelAttribute("loginUser") Member loginUser, Board board, MultipartFile file) throws Exception {
+        board.setMemberNo(loginUser.getMemberNo());
+        board.setGoalImg(writeFile(file));
         boardService.update(board);
         return "redirect:../index";
     }

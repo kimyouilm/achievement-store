@@ -13,6 +13,7 @@
         <result column="goal" property="goal"/>
         <result column="goal_ham" property="goalHam"/>
         <result column="goal_date" property="goalDate"/>
+        <result column="goal_img" property="goalImg"/>
         <result column="is_success" property="isSuccess"/>
         <result column="regi_date" property="regiDate"/>
     </resultMap>
@@ -25,6 +26,7 @@
         <result column="goal" property="goal"/>
         <result column="goal_ham" property="goalHam"/>
         <result column="goal_date" property="goalDate"/>
+        <result column="goal_img" property="goalImg"/>
         <result column="is_success" property="isSuccess"/>
         <result column="regi_date" property="regiDate"/>
 
@@ -45,6 +47,7 @@
         , b.contents
         , b.goal
         , b.goal_ham
+        , b.goal_img
         , b.regi_date
         , b.is_success
         , m.member_no
@@ -64,6 +67,7 @@
         , b.contents
         , b.goal
         , b.goal_ham
+        , b.goal_img
         , b.regi_date
         , b.is_success
         , m.member_no
@@ -75,39 +79,55 @@
     </select>
 
     <insert id="insert" parameterType="Board">
-        insert into board
+        INSERT INTO board
         (
-        title
-        , contents
+        goal_img
+        , title
         , goal
+        , contents
         , goal_ham
-        , goal_date
         , member_no
         , regi_date
+        , goal_date
         )
-        VALUE
+        VALUES
         (
-        #{title}
-        , #{contents}
+        #{goalImg}
+        , #{title}
         , #{goal}
+        , #{contents}
         , #{goalHam}
-        , #{goalDate}
         , #{memberNo}
         , now()
+        , #{goalDate}
         )
     </insert>
 
-    <select id="findBy" parameterType="int" resultMap="BoardMap">
+    <select id="findBy" parameterType="int" resultMap="BoardMemberMap">
         select
-        *
-        from board
+        b.board_no
+        , b.member_no
+        , b.title
+        , b.contents
+        , b.goal
+        , b.goal_ham
+        , b.goal_img
+        , b.goal_date
+        , b.regi_date
+        , b.is_success
+        , m.member_no
+        , m.name
+        , m.id
+        , m.ham
+         from board b
+         left join member m on b.member_no = m.member_no
         where board_no = ${boardNo}
     </select>
 
     <update id="deleteByBoardNo" parameterType="Board">
         update board
         <set>
-            is_success = 9
+            is_success = 3
         </set>
         where
         board_no = #{boardNo};
@@ -123,6 +143,8 @@
             <if test="goal != null">goal = #{goal}</if>
             ,
             <if test="goalDate != null">goal_date = #{goalDate}</if>
+            ,
+            <if test="goalImg != null">goal_img = #{goalImg}</if>
         </set>
         where board_no = #{boardNo}
     </update>
@@ -148,4 +170,8 @@
             b.board_no = #{boardNo}
         and b.member_no = #{memberNo}
     </update>
+
+    <select id="countBoard" resultType="int">
+        SELECT COUNT(*) FROM board
+    </select>
 </mapper>

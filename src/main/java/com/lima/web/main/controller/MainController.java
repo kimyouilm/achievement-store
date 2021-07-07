@@ -32,13 +32,16 @@ public class MainController {
         if (loginUser != null) {
             Member member = memberService.get(loginUser.getMemberNo());
             model.addAttribute("loginUser", member);
-            // 로그인한 유저만의 Board불러오기
-            List<Board> myBoards = boardService.showMyBoardList(loginUser.getMemberNo());
-            model.addAttribute("myBoards", myBoards);
         }
+        // 회원 숫자
+        int memberCount = memberService.countMember();
+        // 게시판 갯수
+        int boardCount = boardService.countBoard();
 
-        // 모든 모드 들고 오기
+        // 모든 보드 들고 오기
         List<Board> boards = boardService.list();
         model.addAttribute("boards", boards);
+        model.addAttribute("memberCount", memberCount);
+        model.addAttribute("boardCount", boardCount);
     }
 }

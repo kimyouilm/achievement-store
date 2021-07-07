@@ -1,17 +1,21 @@
 package com.lima.web.member.controller;
 
 import com.lima.service.BoardService;
+import com.lima.web.board.domain.Board;
 import com.lima.web.member.domain.Member;
 import com.lima.web.member.service.MemberService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.File;
 import java.util.List;
+import java.util.UUID;
 import java.util.concurrent.ExecutionException;
 
 @Controller
@@ -25,27 +29,47 @@ public class MemberController {
     @Resource
     private BoardService boardService;
 
-    @GetMapping("mypage")
-    public void doMypage() throws Exception {
-
+    String uploadDir;
+    private String writeFile (MultipartFile file) throws Exception {
+        if (file.isEmpty())
+            return null;
+        String filename = UUID.randomUUID().toString();
+        file.transferTo(new File(uploadDir + "/" + filename));
+        return filename;
     }
 
-    // member list
+    @GetMapping("mypage")
+    public void doMypage(@ModelAttribute("loginUser") Member loginUser, Model model) throws Exception {
+
+        // 로그인한 유저만의 Board불러오기
+        List<Board> myBoards = boardService.showMyBoardList(loginUser.getMemberNo());
+        model.addAttribute("loginUser", loginUser);
+        model.addAttribute("myBoards", myBoards);
+    }
+
+    @PostMapping("updateMyInfo")
+    public String updateInfo(@ModelAttribute("loginUser") Member loginUser, MultipartFile mutipartFile) throws Exception {
+        loginUser.setProfileImg(writeFile(mutipartFile));
+        memberService.updateMyInfo(loginUser);
+        return "redirect: ../index";
+    }
+
     @GetMapping("list")
     public void selectList(Model model) throws Exception {
         List<Member> member = memberService.findAll();
         model.addAttribute("members", member);
     }
 
-    // sign in & sign up page
+    @GetMapping("signInForm")
+    public void signIn() throws ExecutionException {}
+
     @GetMapping("signUpForm")
     public void signUp() throws ExecutionException {}
 
-    // member sign up
     @PostMapping("signUp")
     public String add(Member member) throws Exception {
         memberService.insert(member);
-        return "redirect:signUpForm";
+        return "redirect:signInForm";
     }
 
     /**
@@ -76,7 +100,6 @@ public class MemberController {
 
     // 메소드에 @ResponseBody 로 어노테이션이 되어 있다면 메소드에서 리턴되는 값은 View 를 통해서
     // 출력되지 않고 HTTP Response Body 에 직접 쓰여지게 됩니다.
-
     /**
      * @param id 유저가 입력한 아이디 값.
      * @return 입력받은 id로 DB에 해당 아이디가 있는지 체크.
@@ -95,11 +118,5 @@ public class MemberController {
     @GetMapping("emailCheck")
     public @ResponseBody int emailCheck(String email) throws Exception {
         return memberService.emailCheck(email);
-    }
-
-    @PostMapping("updateMyInfo")
-    public String updateInfo(@ModelAttribute("loginUser") Member loginUser) throws Exception {
-        memberService.updateMyInfo(loginUser);
-        return "redirect: ../index";
     }
 }

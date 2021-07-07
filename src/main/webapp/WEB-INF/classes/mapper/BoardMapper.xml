@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lima.web.board.dao.BoardDao">
+
+    <resultMap type="Board" id="BoardMap">
+        <id column="board_no" property="boardNo"/>
+        <result column="member_no" property="memberNo"/>
+        <result column="title" property="title"/>
+        <result column="contents" property="contents"/>
+        <result column="goal" property="goal"/>
+        <result column="goal_ham" property="goalHam"/>
+        <result column="goal_date" property="goalDate"/>
+        <result column="goal_img" property="goalImg"/>
+        <result column="is_success" property="isSuccess"/>
+        <result column="regi_date" property="regiDate"/>
+    </resultMap>
+
+    <resultMap type="Board" id="BoardMemberMap">
+        <id column="board_no" property="boardNo"/>
+        <result column="member_no" property="memberNo"/>
+        <result column="title" property="title"/>
+        <result column="contents" property="contents"/>
+        <result column="goal" property="goal"/>
+        <result column="goal_ham" property="goalHam"/>
+        <result column="goal_date" property="goalDate"/>
+        <result column="goal_img" property="goalImg"/>
+        <result column="is_success" property="isSuccess"/>
+        <result column="regi_date" property="regiDate"/>
+
+        <collection property="member" ofType="Member">
+            <id column="member_no" property="memberNo"/>
+            <result column="id" property="id"/>
+            <result column="name" property="name"/>
+            <result column="ham" property="ham"/>
+            <result column="email" property="email"/>
+        </collection>
+    </resultMap>
+
+    <select id="findAllByMemberNo" parameterType="int" resultMap="BoardMemberMap">
+        select
+        b.board_no
+        , b.member_no
+        , b.title
+        , b.contents
+        , b.goal
+        , b.goal_ham
+        , b.goal_img
+        , b.regi_date
+        , b.is_success
+        , m.member_no
+        , m.name
+        , m.id
+        , m.ham
+         from board b
+         left join member m on b.member_no = m.member_no
+         where b.member_no = #{memberNo}
+    </select>
+
+    <select id="findAll" resultMap="BoardMemberMap">
+        select
+        b.board_no
+        , b.member_no
+        , b.title
+        , b.contents
+        , b.goal
+        , b.goal_ham
+        , b.goal_img
+        , b.regi_date
+        , b.is_success
+        , m.member_no
+        , m.name
+        , m.id
+        , m.ham
+         from board b
+         left join member m on b.member_no = m.member_no
+    </select>
+
+    <insert id="insert" parameterType="Board">
+        INSERT INTO board
+        (
+        goal_img
+        , title
+        , goal
+        , contents
+        , goal_ham
+        , member_no
+        , regi_date
+        , goal_date
+        )
+        VALUES
+        (
+        #{goalImg}
+        , #{title}
+        , #{goal}
+        , #{contents}
+        , #{goalHam}
+        , #{memberNo}
+        , now()
+        , #{goalDate}
+        )
+    </insert>
+
+    <select id="findBy" parameterType="int" resultMap="BoardMemberMap">
+        select
+        b.board_no
+        , b.member_no
+        , b.title
+        , b.contents
+        , b.goal
+        , b.goal_ham
+        , b.goal_img
+        , b.goal_date
+        , b.regi_date
+        , b.is_success
+        , m.member_no
+        , m.name
+        , m.id
+        , m.ham
+         from board b
+         left join member m on b.member_no = m.member_no
+        where board_no = ${boardNo}
+    </select>
+
+    <update id="deleteByBoardNo" parameterType="Board">
+        update board
+        <set>
+            is_success = 3
+        </set>
+        where
+        board_no = #{boardNo};
+    </update>
+
+    <update id="update" parameterType="Board">
+        update board
+        <set>
+            <if test="title != null">title = #{title}</if>
+            ,
+            <if test="contents != null">contents = #{contents}</if>
+            ,
+            <if test="goal != null">goal = #{goal}</if>
+            ,
+            <if test="goalDate != null">goal_date = #{goalDate}</if>
+            ,
+            <if test="goalImg != null">goal_img = #{goalImg}</if>
+        </set>
+        where board_no = #{boardNo}
+    </update>
+
+    <update id="failMission" parameterType="int">
+        update board
+        <set>
+            is_success = 2
+        </set>
+        where
+        board_no = #{boardNo};
+    </update>
+
+    <update id="successMission" parameterType="map">
+        update
+        board b left join member m
+		  ON b.member_no = m.member_no
+        <set>
+            b.is_success = 1
+            , m.ham = #{ham}
+        </set>
+        where
+            b.board_no = #{boardNo}
+        and b.member_no = #{memberNo}
+    </update>
+    <select id="countBoard" resultType="int">
+        SELECT COUNT(*) FROM board
+    </select>
+</mapper>

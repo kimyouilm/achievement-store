@@ -1,13 +1,81 @@
-.board_wrap {
-    width: 90%;
-    margin: 5% 5%;
+.set-new-goal {
+    background: #5fcf80;
+    color: #fff;
+    border-radius: 50px;
+    padding: 8px 25px;
+    white-space: nowrap;
+    transition: 0.3s;
+    font-size: 14px;
+    display: inline-block;
+    border: 0;
 }
 
-.board-list-tr:hover {
-    font-weight: 600;
+.set-new-goal:focus {
+    outline: none;
 }
 
-.form-group {
-    width: 80%;
-    margin: 2% 10%;
+.board-button-div {
+    margin-bottom: 1%;
+}
+
+#file {
+    display: none;
+}
+
+.form-control{
+    margin-bottom: 1%;
+}
+
+#addphoto {
+    background: #5fcf80;
+    color: #fff;
+    border-radius: 50px;
+    padding: 8px 25px;
+    white-space: nowrap;
+    transition: 0.3s;
+    font-size: 14px;
+    display: inline-block;
+}
+#removephoto {
+    background: #a94442;
+    color: #fff;
+    border-radius: 50px;
+    padding: 8px 25px;
+    white-space: nowrap;
+    transition: 0.3s;
+    font-size: 14px;
+    display: inline-block;
+}
+
+#addphoto:hover {
+    background: #3ac162;
+    color: #fff;
+}
+
+#removephoto:hover  {
+    background: #bd2130;
+    color: #fff;
+}
+
+#img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.photobtn {
+    text-align: center;
+    width: 100%;
+}
+
+.thumbnail {
+    position: relative;
+    padding-top: 100%; /* 1:1 ratio */
+    overflow: hidden;
+    margin-bottom: 3%;
 }

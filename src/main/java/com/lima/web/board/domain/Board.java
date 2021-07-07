@@ -1,8 +1,10 @@
 package com.lima.web.board.domain;
 
 import com.lima.web.member.domain.Member;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 public class Board {
@@ -13,7 +15,8 @@ public class Board {
     private String contents;
     private String goal;
     private String goalHam;
-    private Date goalDate;
+    private String goalDate;
+    private String goalImg;
     private Member member;
     private int isSuccess;
     private Date regiDate;
@@ -66,11 +69,19 @@ public class Board {
         this.goalHam = goalHam;
     }
 
-    public Date getGoalDate() {
+    public String getGoalImg() {
+        return goalImg;
+    }
+
+    public void setGoalImg(String goalImg) {
+        this.goalImg = goalImg;
+    }
+
+    public String getGoalDate() {
         return goalDate;
     }
 
-    public void setGoalDate(Date goalDate) {
+    public void setGoalDate(String goalDate) {
         this.goalDate = goalDate;
     }
 
@@ -111,13 +122,14 @@ public class Board {
                 Objects.equals(goal, board.goal) &&
                 Objects.equals(goalHam, board.goalHam) &&
                 Objects.equals(goalDate, board.goalDate) &&
+                Objects.equals(goalImg, board.goalImg) &&
                 Objects.equals(member, board.member) &&
                 Objects.equals(regiDate, board.regiDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(boardNo, memberNo, title, contents, goal, goalHam, goalDate, member, isSuccess, regiDate);
+        return Objects.hash(boardNo, memberNo, title, contents, goal, goalHam, goalDate, goalImg, member, isSuccess, regiDate);
     }
 
     @Override
@@ -130,6 +142,7 @@ public class Board {
                 ", goal='" + goal + '\'' +
                 ", goalHam='" + goalHam + '\'' +
                 ", goalDate=" + goalDate +
+                ", goalImg='" + goalImg + '\'' +
                 ", member=" + member +
                 ", isSuccess=" + isSuccess +
                 ", regiDate=" + regiDate +

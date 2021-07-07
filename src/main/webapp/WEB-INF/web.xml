@@ -30,6 +30,15 @@
       (=Controller에 URL Mapping 이 있는지 확인)을 확인하기 때문에 정적 리소스들은 매핑시킬수 없으므로
       404가 발생하는 것이다.
       해결 방법으로는 url-pattern 을 변경 하던지 아니면, default servlet-mapping 을 시켜주면 된다.-->
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>*.html</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>*.map</url-pattern>
+    </servlet-mapping>
 
     <servlet-mapping>
         <servlet-name>default</servlet-name>
@@ -75,7 +84,7 @@
         <servlet-name>default</servlet-name>
         <url-pattern>*.ico</url-pattern>
     </servlet-mapping>
-
+<!--https://bin-repository.tistory.com/116 -->
 </web-app>
 
 

@@ -25,4 +25,5 @@ public interface BoardService {
 
     void successMission(Board board, Member member) throws Exception;
 
+    int countBoard() throws Exception;
 }

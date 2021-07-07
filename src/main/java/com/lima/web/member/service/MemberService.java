@@ -66,14 +66,8 @@ public class MemberService {
      */
     public void hamUpdate(int ham, int memberNo) throws Exception {
         Member member = memberDao.findBy(memberNo);
-        Withdraw withdraw = new Withdraw();
         int newHam = member.getHam() - ham;
-
-        withdraw.setMemberNo(memberNo);
-        withdraw.setHam(ham);
         member.setHam(newHam);
-
-        memberDao.insertWithdraw(withdraw);
         memberDao.hamUpdate(member);
     }
 
@@ -88,5 +82,9 @@ public class MemberService {
     }
     public void insertWithdraw(Withdraw withdraw) throws Exception{
         memberDao.insertWithdraw(withdraw);
+    }
+
+    public int countMember() throws Exception {
+        return memberDao.countMember();
     }
 }

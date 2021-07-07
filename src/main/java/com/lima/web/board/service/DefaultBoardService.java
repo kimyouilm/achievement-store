@@ -74,4 +74,9 @@ public class DefaultBoardService implements  BoardService {
         boardDao.successMission(map);
     }
 
+    @Override
+    public int countBoard() throws Exception {
+        return boardDao.countBoard();
+    }
+
 }

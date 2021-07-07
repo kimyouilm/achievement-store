@@ -1,192 +1,367 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-    <title>Achievement Store</title>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <link rel="apple-touch-icon" href="apple-touch-icon.png">
-    <link rel="stylesheet" href="../css/common/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/common/bootstrap-theme.min.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
-    <link href="../css/common/templatemo-style.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <link rel="stylesheet" href="../css/board/board.css">
-    <link rel="stylesheet" href="../css/member/signUpLogin.css">
-
-    <%--    mypage--%>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-    <link href='https://fonts.googleapis.com/css?family=Lato:400,300' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="../css/member/mypage.css">
-
+    <title>Mentor Bootstrap Template - Index</title>
+    <meta content="" name="descriptison">
+    <meta content="" name="keywords">
+    <!-- Favicons -->
+    <link href="../img/favicon.png" rel="icon">
+    <link href="../img/apple-touch-icon.png" rel="apple-touch-icon">
 </head>
+
 <body>
+<jsp:include page="header.jsp"/>
+<!-- ======= Hero Section ======= -->
+<section id="hero" class="d-flex justify-content-center align-items-center">
+    <div class="container position-relative" data-aos="zoom-in" data-aos-delay="100">
+        <h1>혼자 공부하지마세요!<br>함께 공부할 스터디 메이트를 찾아보세요!</h1>
+        <h2>스스로 약속하고 지키는 것을 모두에게 공유해보세요!</h2>
+        <a href="../board/list" class="btn-get-started">스터디 메이트 찾기</a>
+    </div>
+</section><!-- End Hero -->
 
-<div class="overlay"></div>
-<section class="cd-hero">
-    <jsp:include page="header.jsp"/>
-    <ul class="cd-hero-slider">
-        <li class="selected">
-            <div class="heading">
-                <h1>ACHIEVEMENT-STORE</h1>
-                <span>Welcome to Achievement-Store</span>
+<main id="main">
+
+    <!-- ======= About Section ======= -->
+    <section id="about" class="about">
+        <div class="container" data-aos="fade-up">
+
+            <div class="section-title">
+                <h2>How To Use Our Site</h2>
+                <p>Just Do It!</p>
             </div>
-            <div class="cd-full-width first-slide">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="content first-content">
-                                ddddddd
-                            </div>
+
+            <div class="row">
+                <div class="col-lg-6 order-1 order-lg-2" data-aos="fade-left" data-aos-delay="100">
+                    <img src="../img/about.jpg" class="img-fluid" alt="">
+                </div>
+                <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content">
+                    <h3>혼자 공부하지 마세요! 이제는 함께 공부하세요!</h3>
+                    <p class="font-italic">
+                        집에있는 시간이 길어지면서 집에서 공부하는 시간이 많아졌습니다.
+                        혼자서 공부하기 힘들고 지치신다면 함게 이겨낼 스터디 그룹을 한번 찾아보세요!
+                    </p>
+                    <ul>
+                        <li><i class="icofont-check-circled"></i> 자신과의 약속
+                        </li>
+                        <li><i class="icofont-check-circled"></i> 스터디 그룹 찾기
+                        </li>
+                        <li><i class="icofont-check-circled"></i> 소통하는 공간
+                        </li>
+                    </ul>
+                    <p>
+                        Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
+                        in voluptate
+                    </p>
+                    <a href="about.html" class="learn-more-btn">스터디 찾기</a>
+                </div>
+            </div>
+
+        </div>
+    </section><!-- End About Section -->
+
+    <!-- ======= Counts Section ======= -->
+    <section id="counts" class="counts section-bg">
+        <div class="container">
+
+            <div class="row counters">
+
+                <div class="col-lg-3 col-6 text-center">
+                    <span data-toggle="counter-up">${boardCount}</span>
+                    <p>Goal Lists</p>
+                </div>
+
+                <div class="col-lg-3 col-6 text-center">
+                    <span data-toggle="counter-up">64</span>
+                    <p>Study Groups</p>
+                </div>
+
+                <div class="col-lg-3 col-6 text-center">
+                    <span data-toggle="counter-up">${memberCount}</span>
+                    <p>Achievement Store Members</p>
+                </div>
+
+                <div class="col-lg-3 col-6 text-center">
+                    <span data-toggle="counter-up">15</span>
+                    <p>Trainers</p>
+                </div>
+
+            </div>
+
+        </div>
+    </section><!-- End Counts Section -->
+
+    <!-- ======= Why Us Section ======= -->
+    <section id="why-us" class="why-us">
+        <div class="container" data-aos="fade-up">
+
+            <div class="row">
+                <div class="col-lg-4 d-flex align-items-stretch">
+                    <div class="content">
+                        <h3>Why Choose Mentor?</h3>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit
+                            Asperiores dolores sed et. Tenetur quia eos. Autem tempore quibusdam vel necessitatibus
+                            optio ad corporis.
+                        </p>
+                        <div class="text-center">
+                            <a href="about.html" class="more-btn">Learn More <i class="bx bx-chevron-right"></i></a>
                         </div>
                     </div>
                 </div>
-            </div>
-        </li>
-
-        <li>
-            <div class="heading">
-                <h1>Share My Goals</h1>
-                <span>share your goals with other people</span>
-            </div>
-            <div class="cd-half-width second-slide">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="content second-content">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="right-about-text">
-                                            <jsp:include page="board/list.jsp"/>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </li>
-
-        <li>
-            <div class="heading">
-                <h1>STUDY GROUP</h1>
-                <span>We produce featured product every week</span>
-            </div>
-            <div class="cd-half-width third-slide">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="content third-content">
-                                <div class="row">
-                                    <div class="col-md-7 left-image">
-                                        <img src="img/left-feature-image.png">
-                                    </div>
-                                    <div class="col-md-5">
-                                        <div class="right-feature-text">
-                                            <h4>Featured Product: <em>Newline</em></h4>
-                                            <p>Lorem ipsum dolor amet, consecte adipiscing elit, quisque dictum convallis mi. In dapibus auctor dictum donec mattis quis eros ultricies feugiat. Morbi congue faucibus mi, ague blandit curabitur ac lacinia.</p>
-                                            <div class="feature-list">
-                                                <ul>
-                                                    <p>- Suspendisse mattis finibus sem</p>
-                                                    <p>- Pellentesque et urna vel lectus</p>
-                                                    <p>- Vestibulum iaculis nisi dui</p>
-                                                    <p>- Donec sagittis eros , ac tempus ligula</p>
-                                                    <p>- Integer sapien risus, auctor</p>
-                                                </ul>
-                                            </div>
-                                            <div class="primary-button">
-                                                <a href="#">Discover More</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </li>
-
-        <li>
-            <div class="heading">
-                <h1>Store</h1>
-                <span>Here you can check our recent projects</span>
-            </div>
-            <div class="cd-half-width fourth-slide">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="content fourth-content">
-                                <div class="row">
-                                    <div class="col-md-3 project-item">
-                                        <a href="img/item-01.jpg" data-lightbox="image-1"><img src="img/project-item-01.jpg"></a>
-                                    </div>
-                                    <div class="col-md-3 project-item">
-                                        <a href="img/item-02.jpg" data-lightbox="image-1"><img src="img/project-item-02.jpg"></a>
-                                    </div>
-                                    <div class="col-md-3 project-item">
-                                        <a href="img/item-03.jpg" data-lightbox="image-1"><img src="img/project-item-03.jpg"></a>
-                                    </div>
-                                    <div class="col-md-3 project-item">
-                                        <a href="img/item-04.jpg" data-lightbox="image-1"><img src="img/project-item-04.jpg"></a>
-                                    </div>
-                                    <div class="col-md-3 project-item">
-                                        <a href="img/item-05.jpg" data-lightbox="image-1"><img src="img/project-item-05.jpg"></a>
-                                    </div>
-                                    <div class="col-md-3 project-item">
-                                        <a href="img/item-06.jpg" data-lightbox="image-1"><img src="img/project-item-06.jpg"></a>
-                                    </div>
-                                    <div class="col-md-3 project-item">
-                                        <a href="img/item-07.jpg" data-lightbox="image-1"><img src="img/project-item-07.jpg"></a>
-                                    </div>
-                                    <div class="col-md-3 project-item">
-                                        <a href="img/item-08.jpg" data-lightbox="image-1"><img src="img/project-item-08.jpg"></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </li>
-
-        <li>
-            <c:if test="${not empty loginUser}">
-                <div class="heading">
-                    <h1>My Page</h1>
-                    <span>You'll be responded within 48 hrs</span>
-                </div>
-                <div class="cd-half-width fivth-slide">
-                    <div class="container">
+                <div class="col-lg-8 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="icon-boxes d-flex flex-column justify-content-center">
                         <div class="row">
-                            <div class="col-md-12">
-                                <div class="content fivth-content">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <jsp:include page="member/mypage.jsp"/>
+                            <div class="col-xl-4 d-flex align-items-stretch">
+                                <div class="icon-box mt-4 mt-xl-0">
+                                    <i class="bx bx-receipt"></i>
+                                    <h4>Corporis voluptates sit</h4>
+                                    <p>Consequuntur sunt aut quasi enim aliquam quae harum pariatur laboris nisi ut
+                                        aliquip</p>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 d-flex align-items-stretch">
+                                <div class="icon-box mt-4 mt-xl-0">
+                                    <i class="bx bx-cube-alt"></i>
+                                    <h4>Ullamco laboris ladore pan</h4>
+                                    <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+                                        deserunt</p>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 d-flex align-items-stretch">
+                                <div class="icon-box mt-4 mt-xl-0">
+                                    <i class="bx bx-images"></i>
+                                    <h4>Labore consequatur</h4>
+                                    <p>Aut suscipit aut cum nemo deleniti aut omnis. Doloribus ut maiores omnis
+                                        facere</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- End .content-->
+                </div>
+            </div>
+
+        </div>
+    </section><!-- End Why Us Section -->
+
+    <!-- ======= Features Section ======= -->
+    <section id="features" class="features">
+        <div class="container" data-aos="fade-up">
+
+            <div class="row" data-aos="zoom-in" data-aos-delay="100">
+                <div class="col-lg-3 col-md-4">
+                    <div class="icon-box">
+                        <i class="ri-store-line" style="color: #ffbb2c;"></i>
+                        <h3><a href="">Lorem Ipsum</a></h3>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 mt-4 mt-md-0">
+                    <div class="icon-box">
+                        <i class="ri-bar-chart-box-line" style="color: #5578ff;"></i>
+                        <h3><a href="">Dolor Sitema</a></h3>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 mt-4 mt-md-0">
+                    <div class="icon-box">
+                        <i class="ri-calendar-todo-line" style="color: #e80368;"></i>
+                        <h3><a href="">Sed perspiciatis</a></h3>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 mt-4 mt-lg-0">
+                    <div class="icon-box">
+                        <i class="ri-paint-brush-line" style="color: #e361ff;"></i>
+                        <h3><a href="">Magni Dolores</a></h3>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 mt-4">
+                    <div class="icon-box">
+                        <i class="ri-database-2-line" style="color: #47aeff;"></i>
+                        <h3><a href="">Nemo Enim</a></h3>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 mt-4">
+                    <div class="icon-box">
+                        <i class="ri-gradienter-line" style="color: #ffa76e;"></i>
+                        <h3><a href="">Eiusmod Tempor</a></h3>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 mt-4">
+                    <div class="icon-box">
+                        <i class="ri-file-list-3-line" style="color: #11dbcf;"></i>
+                        <h3><a href="">Midela Teren</a></h3>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 mt-4">
+                    <div class="icon-box">
+                        <i class="ri-price-tag-2-line" style="color: #4233ff;"></i>
+                        <h3><a href="">Pira Neve</a></h3>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 mt-4">
+                    <div class="icon-box">
+                        <i class="ri-anchor-line" style="color: #b2904f;"></i>
+                        <h3><a href="">Dirada Pack</a></h3>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 mt-4">
+                    <div class="icon-box">
+                        <i class="ri-disc-line" style="color: #b20969;"></i>
+                        <h3><a href="">Moton Ideal</a></h3>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 mt-4">
+                    <div class="icon-box">
+                        <i class="ri-base-station-line" style="color: #ff5828;"></i>
+                        <h3><a href="">Verdo Park</a></h3>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 mt-4">
+                    <div class="icon-box">
+                        <i class="ri-fingerprint-line" style="color: #29cc61;"></i>
+                        <h3><a href="">Flavor Nivelanda</a></h3>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section><!-- End Features Section -->
+    <!-- ======= Popular Courses Section ======= -->
+    <section id="popular-courses" class="courses">
+        <div class="container" data-aos="fade-up">
+
+            <div class="section-title">
+                <h2>Share Goals</h2>
+                <p>Community</p>
+            </div>
+
+            <div class="row" data-aos="zoom-in" data-aos-delay="100">
+                <c:forEach items="${boards}" var="board" begin="0" end="2" step="1">
+                    <c:if test="${board.isSuccess eq 0}">
+                        <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+                            <div class="course-item" onClick="location.href='/board/detail?boardNo=${board.boardNo}'">
+                                <c:if test="${board.goalImg eq null}">
+                                    <img src="../upload/board/study-notebooks.jpg" class="img-fluid" alt="...">
+                                </c:if>
+                                <c:if test="${board.goalImg ne null}">
+                                    <img src="/upload/board/${board.goalImg}" class="img-fluid" alt="...">
+                                </c:if>
+                                <div class="course-content">
+                                    <div class="d-flex justify-content-between align-items-center mb-3">
+                                        <h4>${board.goalHam}&nbsp;ham</h4>
+                                        <p class="price"><fmt:formatDate pattern="yyy-MM-dd"
+                                                                         value="${board.regiDate}"/></p>
+                                    </div>
+                                    <h3><a href="">${board.title}</a></h3>
+                                    <p>${board.goal}</p>
+                                    <div class="trainer d-flex justify-content-between align-items-center">
+                                        <div class="trainer-profile d-flex align-items-center">
+                                            <img src="../img/trainers/trainer-1.jpg" class="img-fluid" alt="">
+                                            <span>${board.member.name}</span>
+                                        </div>
+                                        <div class="trainer-rank d-flex align-items-center">
+                                            <i class="bx bx-user"></i>&nbsp;50
+                                            &nbsp;&nbsp;
+                                            <i class="bx bx-heart"></i>&nbsp;65
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <!-- End Course Item-->
+                    </c:if>
+                </c:forEach>
+            </div>
+        </div>
+    </section><!-- End Popular Courses Section -->
+    <!-- ======= Trainers Section ======= -->
+    <section id="trainers" class="trainers">
+        <div class="container" data-aos="fade-up">
+
+            <div class="section-title">
+                <h2>Trainers</h2>
+                <p>Our Professional Trainers</p>
+            </div>
+
+            <div class="row" data-aos="zoom-in" data-aos-delay="100">
+                <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+                    <div class="member">
+                        <img src="../img/trainers/trainer-1.jpg" class="img-fluid" alt="">
+                        <div class="member-content">
+                            <h4>Walter White</h4>
+                            <span>Web Development</span>
+                            <p>
+                                Magni qui quod omnis unde et eos fuga et exercitationem. Odio veritatis perspiciatis
+                                quaerat qui aut aut aut
+                            </p>
+                            <div class="social">
+                                <a href=""><i class="icofont-twitter"></i></a>
+                                <a href=""><i class="icofont-facebook"></i></a>
+                                <a href=""><i class="icofont-instagram"></i></a>
+                                <a href=""><i class="icofont-linkedin"></i></a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </c:if>
-        </li>
-    </ul> <!-- .cd-hero-slider -->
-</section> <!-- .cd-hero -->
 
+                <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+                    <div class="member">
+                        <img src="../img/trainers/trainer-2.jpg" class="img-fluid" alt="">
+                        <div class="member-content">
+                            <h4>Sarah Jhinson</h4>
+                            <span>Marketing</span>
+                            <p>
+                                Repellat fugiat adipisci nemo illum nesciunt voluptas repellendus. In architecto rerum
+                                rerum temporibus
+                            </p>
+                            <div class="social">
+                                <a href=""><i class="icofont-twitter"></i></a>
+                                <a href=""><i class="icofont-facebook"></i></a>
+                                <a href=""><i class="icofont-instagram"></i></a>
+                                <a href=""><i class="icofont-linkedin"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+                    <div class="member">
+                        <img src="../img/trainers/trainer-3.jpg" class="img-fluid" alt="">
+                        <div class="member-content">
+                            <h4>William Anderson</h4>
+                            <span>Content</span>
+                            <p>
+                                Voluptas necessitatibus occaecati quia. Earum totam consequuntur qui porro et laborum
+                                toro des clara
+                            </p>
+                            <div class="social">
+                                <a href=""><i class="icofont-twitter"></i></a>
+                                <a href=""><i class="icofont-facebook"></i></a>
+                                <a href=""><i class="icofont-instagram"></i></a>
+                                <a href=""><i class="icofont-linkedin"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section><!-- End Trainers Section -->
+</main><!-- End #main -->
+
+<!-- ======= Footer ======= -->
 <jsp:include page="footer.jsp"/>
 
-<script src="../js/common/vendor/jquery-1.11.2.min.js"></script>
-<script src="../js/common/vendor/bootstrap.min.js"></script>
-<script src="../js/common/plugins.js"></script>
-<script src="../js/common/main.js"></script>
-<script src="../js/member/signUpLogin.js" type="text/javascript"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<a href="#" class="back-to-top"><i class="bx bx-up-arrow-alt"></i></a>
+<div id="preloader"></div>
+
 </body>
+
 </html>
